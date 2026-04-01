@@ -18,8 +18,8 @@ public static class CoreServiceRegistration
 
         services.AddScoped<Stopwatch>();
 
+        services.AddTransient<LoggerServiceBase, MsSqlLogger>();
         services.AddTransient<LoggerServiceBase, FileLogger>();
-        services.AddTransient<MsSqlLogger>();
         return services;
     }
 }

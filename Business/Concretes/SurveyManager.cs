@@ -85,8 +85,7 @@ public class SurveyManager : ISurveyService
     {
         Survey? survey = await _surveyDal.GetAsync(include:s=>s.Include(s=>s.Question).Include(s=>s.Participations),
             predicate: s => s.Id == surveyId);
-        if (survey == null)
-            await _surveyBusinessRules.SurveyShouldExistWhenSelected(survey);
+        await _surveyBusinessRules.SurveyShouldExistWhenSelected(survey);
         var response = _mapper.Map<SurveyResultResponse>(survey);
         return response;
     }
